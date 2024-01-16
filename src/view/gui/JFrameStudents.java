@@ -221,14 +221,6 @@ public class JFrameStudents extends javax.swing.JFrame {
         ArchivoStudent archivo = new ArchivoStudent();
         archivo.createFile();
 
-        String name = NameField.getText();
-        String username = UsernameField.getText();
-        String id = IdField.getText();
-        String email = EmailField.getText();
-        String age = AgeField.getText();
-        String regisFee = RegistraFeeField.getText();
-        String approvalStatu = ApprovalStaField.getText();
-
         if (NameField.getText().equals("") && NameField.getText().endsWith("")
                 && UsernameField.getText().equals("") && UsernameField.getText().endsWith("")
                 && IdField.getText().equals("") && IdField.getText().endsWith("")
@@ -238,7 +230,16 @@ public class JFrameStudents extends javax.swing.JFrame {
                 && ApprovalStaField.getText().equals("") && ApprovalStaField.getText().endsWith("")) {
             JOptionPane.showMessageDialog(null, "Pls complete the form");
         } else {
+            String name = NameField.getText();
+            String username = UsernameField.getText();
+            String id = IdField.getText();
+            String email = EmailField.getText();
+            String age = AgeField.getText();
+            String regisFee = RegistraFeeField.getText();
+            String approvalStatu = ApprovalStaField.getText();
             Student student = new Student(name, username, id, email, date, Integer.parseInt(age), Integer.parseInt(approvalStatu), Float.parseFloat(regisFee));
+            archivo.writeInFile(student);
+            JOptionPane.showMessageDialog(null, "Students saved!");
 
         }
 

@@ -31,9 +31,14 @@ public class ArchivoStudent {
     public void writeInFile(Student student) {
         try {
             FileWriter wr = new FileWriter(file, true);
-            wr.write(student.getId() + "%" + student.getEmail() + "%" + student.getUsername() + "%" + student.getName()
-                    + "%" + student.getAge() + "%" + student.getApprovalStatus()
-                    + "%" + student.getMatriculationFee() + "\r\n");
+            wr.write(student.getId() + "%" + 
+                    student.getEmail() + "%"+ 
+                    student.getUsername() + "%" + 
+                    student.getName() + "%" + 
+                    student.getAge() + "%" +
+                    student.getDate() + "%" +
+                    student.getApprovalStatus() + "%" + 
+                    student.getMatriculationFee() + "\r\n");
             wr.close();
         } catch (IOException e) {
             System.out.println(e);
