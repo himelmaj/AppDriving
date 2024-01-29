@@ -4,6 +4,11 @@
  */
 package view.gui;
 
+import control.DataClass;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -19,10 +24,9 @@ public class JFrameStudentsList extends javax.swing.JFrame {
      */
     public JFrameStudentsList() {
         initComponents();
-        this.setLocationRelativeTo(null);
         this.setTitle("Students List");
         setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
-
+        loadModel();
     }
 
     private void loadModel() {
@@ -35,9 +39,30 @@ public class JFrameStudentsList extends javax.swing.JFrame {
             model.addColumn("Date");
             model.addColumn("ApprovalStatus");
             model.addColumn("MatriculationFee");
+
+            StudentsTable.setModel(model);
+
+            loadFile();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private void loadFile() throws IOException {
+        String row[];
+        try {
+            FileReader file = new FileReader("StudentList.txt");
+            BufferedReader reading = new BufferedReader(file);
             
+            String line = reading.readLine();
+            while(line != null){
+                row = line.split("%");
+                model.addRow(row);
+                line = reading.readLine();
+            }
             
-        } catch (Exception e) {
+        } catch (FileNotFoundException e) {
             System.out.println(e);
         }
     }
@@ -51,10 +76,23 @@ public class JFrameStudentsList extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         StudentsTable = new javax.swing.JTable();
         AtrasButton = new javax.swing.JButton();
+        Home = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -95,10 +133,16 @@ public class JFrameStudentsList extends javax.swing.JFrame {
         jScrollPane1.setViewportView(StudentsTable);
 
         AtrasButton.setText("Atras");
-        AtrasButton.setActionCommand("Atras");
         AtrasButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AtrasButtonActionPerformed(evt);
+            }
+        });
+
+        Home.setLabel("Home");
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
             }
         });
 
@@ -111,22 +155,23 @@ public class JFrameStudentsList extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(AtrasButton)
-                        .addGap(700, 700, 700))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE)
-                        .addContainerGap())))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Home)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 772, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(AtrasButton)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(AtrasButton)
+                    .addComponent(Home))
                 .addGap(50, 50, 50)
                 .addComponent(jScrollPane1)
                 .addContainerGap())
         );
-
-        AtrasButton.getAccessibleContext().setAccessibleName("Atras");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -149,46 +194,23 @@ public class JFrameStudentsList extends javax.swing.JFrame {
 
     private void AtrasButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AtrasButtonActionPerformed
         // TODO add your handling code here:
+      DataClass.gotoAnotherFrame(this, DataClass.JFStudents);
+
+        
     }//GEN-LAST:event_AtrasButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(JFrameStudentsList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(JFrameStudentsList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(JFrameStudentsList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(JFrameStudentsList.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        // TODO add your handling code here:
+           DataClass.gotoAnotherFrame(this, DataClass.JFHome);
 
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new JFrameStudentsList().setVisible(true);
-            }
-        });
-    }
+    }//GEN-LAST:event_HomeActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasButton;
+    private javax.swing.JButton Home;
     private javax.swing.JTable StudentsTable;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables

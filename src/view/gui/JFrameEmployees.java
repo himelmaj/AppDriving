@@ -5,12 +5,17 @@
 package view.gui;
 
 import control.DataClass;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
+import model.ArchivoEmployee;
+import model.Employee;
 
 /**
  *
  * @author sergirodesc
  */
 public class JFrameEmployees extends javax.swing.JFrame {
+    static LocalDate date = LocalDate.now();
 
     /**
      * Creates new form JFrameEmployees
@@ -30,6 +35,20 @@ public class JFrameEmployees extends javax.swing.JFrame {
 
         jPanelEmployees = new javax.swing.JPanel();
         jButtonHome = new javax.swing.JButton();
+        SetName = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        SetId = new javax.swing.JLabel();
+        SetEmail = new javax.swing.JLabel();
+        SetSalary = new javax.swing.JLabel();
+        SetPosition = new javax.swing.JLabel();
+        NameLabel = new javax.swing.JTextField();
+        UsernameLabel = new javax.swing.JTextField();
+        IdLabel = new javax.swing.JTextField();
+        EmailLabel = new javax.swing.JTextField();
+        SalaryLabel = new javax.swing.JTextField();
+        PostionLabel = new javax.swing.JTextField();
+        SaveButton = new javax.swing.JButton();
+        List = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("EMPLOYEES");
@@ -42,32 +61,132 @@ public class JFrameEmployees extends javax.swing.JFrame {
             }
         });
 
+        SetName.setText("Set Name");
+
+        jLabel1.setText("Set Username");
+
+        SetId.setText("Set Id");
+
+        SetEmail.setText("Set Email");
+
+        SetSalary.setText("Set Salary");
+
+        SetPosition.setText("Set Postition");
+
+        NameLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NameLabelActionPerformed(evt);
+            }
+        });
+
+        IdLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IdLabelActionPerformed(evt);
+            }
+        });
+
+        PostionLabel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PostionLabelActionPerformed(evt);
+            }
+        });
+
+        SaveButton.setText("Save");
+        SaveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SaveButtonActionPerformed(evt);
+            }
+        });
+
+        List.setText("List");
+        List.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelEmployeesLayout = new javax.swing.GroupLayout(jPanelEmployees);
         jPanelEmployees.setLayout(jPanelEmployeesLayout);
         jPanelEmployeesLayout.setHorizontalGroup(
             jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelEmployeesLayout.createSequentialGroup()
-                .addGap(264, 264, 264)
-                .addComponent(jButtonHome)
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelEmployeesLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButtonHome)
+                        .addGap(18, 18, 18)
+                        .addComponent(List))
+                    .addGroup(jPanelEmployeesLayout.createSequentialGroup()
+                        .addGap(156, 156, 156)
+                        .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(SetName)
+                            .addComponent(jLabel1)
+                            .addComponent(SetId)
+                            .addComponent(SetEmail)
+                            .addComponent(SetSalary)
+                            .addComponent(SetPosition))
+                        .addGap(102, 102, 102)
+                        .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(NameLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 112, Short.MAX_VALUE)
+                            .addComponent(UsernameLabel)
+                            .addComponent(IdLabel)
+                            .addComponent(EmailLabel)
+                            .addComponent(SalaryLabel)
+                            .addComponent(PostionLabel)))
+                    .addGroup(jPanelEmployeesLayout.createSequentialGroup()
+                        .addGap(260, 260, 260)
+                        .addComponent(SaveButton)))
+                .addContainerGap(202, Short.MAX_VALUE))
         );
         jPanelEmployeesLayout.setVerticalGroup(
             jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelEmployeesLayout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addComponent(jButtonHome)
-                .addGap(98, 98, 98))
+            .addGroup(jPanelEmployeesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonHome)
+                    .addComponent(List))
+                .addGap(74, 74, 74)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SetName)
+                    .addComponent(NameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(UsernameLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SetId)
+                    .addComponent(IdLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SetEmail)
+                    .addComponent(EmailLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SetSalary)
+                    .addComponent(SalaryLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanelEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(SetPosition)
+                    .addComponent(PostionLabel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(50, 50, 50)
+                .addComponent(SaveButton)
+                .addContainerGap(67, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanelEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanelEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,9 +197,56 @@ public class JFrameEmployees extends javax.swing.JFrame {
         DataClass.gotoAnotherFrame(this, DataClass.JFHome);
     }//GEN-LAST:event_jButtonHomeActionPerformed
 
+    private void NameLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NameLabelActionPerformed
+
+    private void IdLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IdLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IdLabelActionPerformed
+
+    private void SaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SaveButtonActionPerformed
+        // TODO add your handling code here:
+        ArchivoEmployee archivo = new ArchivoEmployee();
+        archivo.createFile();
+
+        if (NameLabel.getText().equals("") && NameLabel.getText().endsWith("")
+                && UsernameLabel.getText().equals("") && UsernameLabel.getText().endsWith("")
+                && IdLabel.getText().equals("") && IdLabel.getText().endsWith("")
+                && EmailLabel.getText().equals("") && EmailLabel.getText().endsWith("")
+                && SalaryLabel.getText().equals("") && SalaryLabel.getText().endsWith("")
+                && PostionLabel.getText().equals("") && PostionLabel.getText().endsWith("")) {
+            JOptionPane.showMessageDialog(null, "Pls complete the form");
+
+        }
+        {
+            String name = NameLabel.getText();
+            String username = UsernameLabel.getText();
+            String id = IdLabel.getText();
+            String email = EmailLabel.getText();
+            String salary = SalaryLabel.getText();
+            String position = PostionLabel.getText();
+            
+            Employee employee = new Employee(name, username, id, email, date, Float.parseFloat(salary), position);
+            archivo.writeInFile(employee);            
+            JOptionPane.showMessageDialog(null, "Employee saved!");
+
+          
+        }
+    }//GEN-LAST:event_SaveButtonActionPerformed
+
+    private void PostionLabelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PostionLabelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PostionLabelActionPerformed
+
+    private void ListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListActionPerformed
+        // TODO add your handling code here:
+        DataClass.gotoAnotherFrame(this, DataClass.JFEmployeesList);
+    }//GEN-LAST:event_ListActionPerformed
+
     /**
-     * @param args the command line arguments
-//     */
+     * @param args the command line arguments //
+     */
 //    public static void main(String args[]) {
 //        /* Set the Nimbus look and feel */
 //        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -114,7 +280,21 @@ public class JFrameEmployees extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField EmailLabel;
+    private javax.swing.JTextField IdLabel;
+    private javax.swing.JButton List;
+    private javax.swing.JTextField NameLabel;
+    private javax.swing.JTextField PostionLabel;
+    private javax.swing.JTextField SalaryLabel;
+    private javax.swing.JButton SaveButton;
+    private javax.swing.JLabel SetEmail;
+    private javax.swing.JLabel SetId;
+    private javax.swing.JLabel SetName;
+    private javax.swing.JLabel SetPosition;
+    private javax.swing.JLabel SetSalary;
+    private javax.swing.JTextField UsernameLabel;
     private javax.swing.JButton jButtonHome;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanelEmployees;
     // End of variables declaration//GEN-END:variables
 }

@@ -188,24 +188,7 @@ public class JFrameHome extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new JFrameHome().setVisible(true);
-//                JFrameHome jfh = new JFrameHome();
-//                 jfh.setVisible(true);
-//                 DataClass.JFHome = jfh;
-//                 
-//                 JFrameStudents jfs = new JFrameStudents();
-//                 jfs.setVisible(false);
-//                 DataClass.JFStudents = jfs;
-//                
-//                 JFrameTeachers jft = new JFrameTeachers();
-//                 jft.setVisible(false);
-//                 DataClass.JFTeachers = jft;
-//                 
-//                 JFrameEmployees jfe = new JFrameEmployees();
-//                 jft.setVisible(false);
-//                 DataClass.JFEmployees = jfe;
-//               
-
+                new JFrameHome().setVisible(true);          
             }
         });
     }

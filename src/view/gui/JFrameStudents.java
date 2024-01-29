@@ -59,6 +59,7 @@ public class JFrameStudents extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         Save = new javax.swing.JButton();
         ApprovalStaField = new javax.swing.JTextField();
+        List = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("STUDENTS");
@@ -112,6 +113,13 @@ public class JFrameStudents extends javax.swing.JFrame {
             }
         });
 
+        List.setText("List");
+        List.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ListActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanelStudentsLayout = new javax.swing.GroupLayout(jPanelStudents);
         jPanelStudents.setLayout(jPanelStudentsLayout);
         jPanelStudentsLayout.setHorizontalGroup(
@@ -121,7 +129,10 @@ public class JFrameStudents extends javax.swing.JFrame {
                     .addGroup(jPanelStudentsLayout.createSequentialGroup()
                         .addGap(130, 130, 130)
                         .addGroup(jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButtonHome)
+                            .addGroup(jPanelStudentsLayout.createSequentialGroup()
+                                .addComponent(jButtonHome)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(List))
                             .addGroup(jPanelStudentsLayout.createSequentialGroup()
                                 .addGroup(jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -150,7 +161,9 @@ public class JFrameStudents extends javax.swing.JFrame {
             jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelStudentsLayout.createSequentialGroup()
                 .addGap(53, 53, 53)
-                .addComponent(jButtonHome)
+                .addGroup(jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonHome)
+                    .addComponent(List))
                 .addGap(29, 29, 29)
                 .addGroup(jPanelStudentsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,6 +262,12 @@ public class JFrameStudents extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_RegistraFeeFieldActionPerformed
 
+    private void ListActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ListActionPerformed
+        // TODO add your handling code here:
+        DataClass.gotoAnotherFrame(this, DataClass.JFStudentsList);
+
+    }//GEN-LAST:event_ListActionPerformed
+
     /**
      * @param args the command line arguments //
      */
@@ -289,6 +308,7 @@ public class JFrameStudents extends javax.swing.JFrame {
     private javax.swing.JTextField ApprovalStaField;
     private javax.swing.JTextField EmailField;
     private javax.swing.JTextField IdField;
+    private javax.swing.JButton List;
     private javax.swing.JTextField NameField;
     private javax.swing.JTextField RegistraFeeField;
     private javax.swing.JButton Save;
