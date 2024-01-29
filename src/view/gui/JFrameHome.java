@@ -23,6 +23,8 @@ public class JFrameHome extends javax.swing.JFrame {
      */
     public JFrameHome() {
         initComponents();
+                this.setTitle("Home");
+
         setSize(Constants.FRAME_WIDTH, Constants.FRAME_HEIGHT);
 
         initConfig();

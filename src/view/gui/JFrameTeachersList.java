@@ -24,6 +24,8 @@ public class JFrameTeachersList extends javax.swing.JFrame {
      */
     public JFrameTeachersList() {
         initComponents();
+        this.setTitle("Approval List");
+
         loadModel();
         setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
 

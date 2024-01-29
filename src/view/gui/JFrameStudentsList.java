@@ -61,6 +61,8 @@ public class JFrameStudentsList extends javax.swing.JFrame {
                 model.addRow(row);
                 line = reading.readLine();
             }
+
+            reading.close();
             
         } catch (FileNotFoundException e) {
             System.out.println(e);

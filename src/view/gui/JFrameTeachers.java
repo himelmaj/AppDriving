@@ -23,6 +23,8 @@ public class JFrameTeachers extends javax.swing.JFrame {
      */
     public JFrameTeachers() {
         initComponents();
+                this.setTitle("Teachers");
+
         setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
 
     }

@@ -23,6 +23,8 @@ public class JFrameEmployees extends javax.swing.JFrame {
      */
     public JFrameEmployees() {
         initComponents();
+        this.setTitle("Employees");
+
         setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
 
     }

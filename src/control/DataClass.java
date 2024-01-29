@@ -12,6 +12,7 @@ import view.gui.JFrameTeachers;
 import view.gui.JFrameStudentsList;
 import view.gui.JFrameEmployeesList;
 import view.gui.JFrameTeachersList;
+import view.gui.JFrameApproval;
 /**
  *
  * @author sergirodesc
@@ -25,6 +26,7 @@ public class DataClass {
     public static JFrameStudentsList JFStudentsList = new JFrameStudentsList();
     public static JFrameEmployeesList JFEmployeesList = new JFrameEmployeesList();
     public static JFrameTeachersList JFTeachersList = new JFrameTeachersList();
+    public static JFrameApproval jFrameApproval = new JFrameApproval();
     
     
     public static void setVisibility() {
@@ -33,6 +35,7 @@ public class DataClass {
         JFEmployees.setVisible(false);
         JFStudentsList.setVisible(false);
         JFEmployeesList.setVisible(false);
+        jFrameApproval.setVisible(false);
     }
 
     public static void gotoAnotherFrame(JFrame JFO, JFrame JFD) {
