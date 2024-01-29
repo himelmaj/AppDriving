@@ -5,8 +5,10 @@
 package view.gui;
 
 import control.DataClass;
+import java.time.LocalDate;
 import javax.swing.JOptionPane;
 import model.ArchivoTeacher;
+import model.Teacher;
 
 /**
  *
@@ -14,11 +16,15 @@ import model.ArchivoTeacher;
  */
 public class JFrameTeachers extends javax.swing.JFrame {
 
+    static LocalDate date = LocalDate.now();
+
     /**
      * Creates new form JFrameTeachers
      */
     public JFrameTeachers() {
         initComponents();
+        setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
+
     }
 
     /**
@@ -109,13 +115,13 @@ public class JFrameTeachers extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel5))
                         .addGap(88, 88, 88)
-                        .addGroup(jPanelTeachersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(SalaryField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(EmailField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(UsernameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(NameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(IdField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(190, Short.MAX_VALUE))
+                        .addGroup(jPanelTeachersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(IdField, javax.swing.GroupLayout.DEFAULT_SIZE, 74, Short.MAX_VALUE)
+                            .addComponent(NameField)
+                            .addComponent(UsernameField)
+                            .addComponent(EmailField)
+                            .addComponent(SalaryField))))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanelTeachersLayout.setVerticalGroup(
             jPanelTeachersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -186,10 +192,21 @@ public class JFrameTeachers extends javax.swing.JFrame {
         ArchivoTeacher archivo = new ArchivoTeacher();
         archivo.createFile();
 
-        if (NameField.getText().equals("") && NameField.getText().endsWith("")) {
+        if (NameField.getText().equals("") && NameField.getText().endsWith("")
+                && UsernameField.getText().equals("") && UsernameField.getText().endsWith("")
+                && IdField.getText().equals("") && IdField.getText().endsWith("")
+                && EmailField.getText().equals("") && EmailField.getText().endsWith("")) {
             JOptionPane.showMessageDialog(null, "Pls complete the form");
-        }else{
-        
+        } else {
+            String name = NameField.getText();
+            String user = UsernameField.getText();
+            String id = IdField.getText();
+            String email = EmailField.getText();
+            String salary = SalaryField.getText();
+            Teacher teacher = new Teacher(name, user, id, email, date, Float.parseFloat(salary));
+            archivo.writeInFile(teacher);
+            JOptionPane.showMessageDialog(null, "Teacher saved!");
+
         }
 
     }//GEN-LAST:event_SaveActionPerformed

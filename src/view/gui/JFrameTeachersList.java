@@ -5,6 +5,11 @@
 package view.gui;
 
 import control.DataClass;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -12,11 +17,16 @@ import control.DataClass;
  */
 public class JFrameTeachersList extends javax.swing.JFrame {
 
+    DefaultTableModel model = new DefaultTableModel();
+
     /**
      * Creates new form JFrameTeachersList
      */
     public JFrameTeachersList() {
         initComponents();
+        loadModel();
+        setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
+
     }
 
     /**
@@ -31,6 +41,8 @@ public class JFrameTeachersList extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         AtrasBtn = new javax.swing.JButton();
         HomeBtn = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        TeachersTable = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,6 +60,19 @@ public class JFrameTeachersList extends javax.swing.JFrame {
             }
         });
 
+        TeachersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane1.setViewportView(TeachersTable);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -56,7 +81,11 @@ public class JFrameTeachersList extends javax.swing.JFrame {
                 .addComponent(AtrasBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(HomeBtn)
-                .addGap(0, 546, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(125, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(119, 119, 119))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -64,7 +93,9 @@ public class JFrameTeachersList extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(AtrasBtn)
                     .addComponent(HomeBtn))
-                .addGap(0, 385, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -75,7 +106,9 @@ public class JFrameTeachersList extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -90,6 +123,43 @@ public class JFrameTeachersList extends javax.swing.JFrame {
         // TODO add your handling code here:
         DataClass.gotoAnotherFrame(this, DataClass.JFTeachers);
     }//GEN-LAST:event_AtrasBtnActionPerformed
+
+    private void loadModel() {
+        try {
+            model.addColumn("Id");
+            model.addColumn("Email");
+            model.addColumn("Username");
+            model.addColumn("Name");
+            model.addColumn("Age");
+            model.addColumn("Date");
+            model.addColumn("Salary");
+
+            TeachersTable.setModel(model);
+
+            loadFile();
+
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+    }
+
+    private void loadFile() throws IOException {
+        String row[];
+        try {
+            FileReader file = new FileReader("TeachersList.txt");
+            BufferedReader reading = new BufferedReader(file);
+
+            String line = reading.readLine();
+            while (line != null) {
+                row = line.split("%");
+                model.addRow(row);
+                line = reading.readLine();
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println(e);
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -129,6 +199,8 @@ public class JFrameTeachersList extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AtrasBtn;
     private javax.swing.JButton HomeBtn;
+    private javax.swing.JTable TeachersTable;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

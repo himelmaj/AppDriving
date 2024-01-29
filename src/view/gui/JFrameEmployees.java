@@ -15,6 +15,7 @@ import model.Employee;
  * @author sergirodesc
  */
 public class JFrameEmployees extends javax.swing.JFrame {
+
     static LocalDate date = LocalDate.now();
 
     /**
@@ -22,6 +23,8 @@ public class JFrameEmployees extends javax.swing.JFrame {
      */
     public JFrameEmployees() {
         initComponents();
+        setSize(JFrameHome.Constants.FRAME_WIDTH, JFrameHome.Constants.FRAME_HEIGHT);
+
     }
 
     /**
@@ -226,12 +229,11 @@ public class JFrameEmployees extends javax.swing.JFrame {
             String email = EmailLabel.getText();
             String salary = SalaryLabel.getText();
             String position = PostionLabel.getText();
-            
+
             Employee employee = new Employee(name, username, id, email, date, Float.parseFloat(salary), position);
-            archivo.writeInFile(employee);            
+            archivo.writeInFile(employee);
             JOptionPane.showMessageDialog(null, "Employee saved!");
 
-          
         }
     }//GEN-LAST:event_SaveButtonActionPerformed
 
