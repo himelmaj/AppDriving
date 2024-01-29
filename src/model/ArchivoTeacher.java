@@ -11,15 +11,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author himelmaj
+ * @author himel
  */
-public class ArchivoStudent {
-
+public class ArchivoTeacher {
     File file;
 
     public void createFile() {
         try {
-            file = new File("StudentList.txt");
+            file = new File("TeachersList.txt");
             if (file.createNewFile()) {
                 JOptionPane.showMessageDialog(null, "File Created");
             }
@@ -28,17 +27,15 @@ public class ArchivoStudent {
         }
     }
 
-    public void writeInFile(Student student) {
+    public void writeInFile(Teacher teacher) {
         try {
             FileWriter wr = new FileWriter(file, true);
-            wr.write(student.getId() + "%" + 
-                    student.getEmail() + "%"+ 
-                    student.getUsername() + "%" + 
-                    student.getName() + "%" + 
-                    student.getAge() + "%" +
-                    student.getDate() + "%" +
-                    student.getApprovalStatus() + "%" + 
-                    student.getMatriculationFee() + "\r\n");
+            wr.write(teacher.getId() + "%"
+                    + teacher.getEmail() + "%"
+                    + teacher.getUsername() + "%"
+                    + teacher.getName() + "%"
+                    + teacher.getDate() + "%"
+                    + teacher.getSalary() + "%");
             wr.close();
         } catch (IOException e) {
             System.out.println(e);
