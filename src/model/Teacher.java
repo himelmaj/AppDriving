@@ -5,7 +5,7 @@
 package model;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
+// import java.util.ArrayList;
 
 /**
  *
@@ -14,12 +14,12 @@ import java.util.ArrayList;
 public class Teacher extends Person {
 
     private float salary;
-    private ArrayList<Student> studentsList;
+    // private ArrayList<Student> studentsList;
 
-    public Teacher(String name, String username, String id, String email, LocalDate date, float salary, ArrayList<Student> studentsList) {
+    public Teacher(String name, String username, String id, String email, LocalDate date, float salary) {
         super(name, username, id, email, date);
         this.salary = salary;
-        this.studentsList = studentsList;
+        // this.studentsList = studentsList;
     }
 
     public Teacher() {
@@ -33,21 +33,21 @@ public class Teacher extends Person {
         this.salary = salary;
     }
 
-    public ArrayList<Student> getStudentsList() {
-        return studentsList;
-    }
+    // public ArrayList<Student> getStudentsList() {
+    //     return studentsList;
+    // }
 
-    public void setStudentsList(ArrayList<Student> studentsList) {
-        this.studentsList = studentsList;
-    }
+    // public void setStudentsList(ArrayList<Student> studentsList) {
+    //     this.studentsList = studentsList;
+    // }
 
     //methods
-    public void addStudent(Student student) {
-        getStudentsList().add(student);
-    }
+    // public void addStudent(Student student) {
+    //     getStudentsList().add(student);
+    // }
 
-    public void removeStudent(Student student) {
-        getStudentsList().remove(student);
-    }
+    // public void removeStudent(Student student) {
+    //     getStudentsList().remove(student);
+    // }
 
 }
